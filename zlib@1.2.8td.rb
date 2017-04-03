@@ -1,19 +1,9 @@
 class ZlibAT128td < Formula
   desc "General-purpose lossless data-compression library"
   homepage "http://www.zlib.net/"
-  url "http://zlib.net/zlib-1.2.8.tar.gz"
+  url "http://www.zlib.net/fossils/zlib-1.2.8.tar.gz"
   mirror "https://downloads.sourceforge.net/project/libpng/zlib/1.2.8/zlib-1.2.8.tar.gz"
   sha256 "36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d"
-
-  bottle do
-    cellar :any
-    revision 1
-    sha256 "9ec582bc10aeb72e417a2c5bdb6f2db6541d3cc8b23c31e51e351c4ad924aaa7" => :sierra
-    sha256 "502f66f8a3df28cd47568967250c534d19ad6c1439c23b235abcc74144e8dd4c" => :el_capitan
-    sha256 "2971abbd45572722af5043a74ecf8a5bfd06adc9834ec90e4126a34c6ce982a1" => :yosemite
-    sha256 "adc394a9e296003bc2bc88451c649aec019496cb6ed3d6673005fcd818ae44a5" => :mavericks
-    sha256 "6ece1cb4b656f0f7ef1feab95ef6eb183e2f9ee2448c1e034de1a97d7f9da249" => :mountain_lion
-  end
 
   keg_only :provided_by_osx
 
@@ -33,6 +23,9 @@ class ZlibAT128td < Formula
 
   def install
     ENV.universal_binary if build.universal?
+    ENV.append "MACOSX_DEPLOYMENT_TARGET" "10.8"
+    ENV.append_to_cflags "-mmacosx-version-min=10.8"
+    ENV.append "LDLAGS" "-mmacosx-version-min=10.8"
     system "./configure", "--prefix=#{prefix}"
     system "make", "install"
   end
