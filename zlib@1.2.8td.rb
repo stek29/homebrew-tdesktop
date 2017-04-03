@@ -23,9 +23,10 @@ class ZlibAT128td < Formula
 
   def install
     ENV.universal_binary if build.universal?
-    ENV.append "MACOSX_DEPLOYMENT_TARGET", "10.8"
-    ENV.append_to_cflags "-mmacosx-version-min=10.8"
-    ENV.append "LDLAGS", "-mmacosx-version-min=10.8"
+    # Yup, again
+    # ENV.append "MACOSX_DEPLOYMENT_TARGET", "10.8"
+    # ENV.append_to_cflags "-mmacosx-version-min=10.8"
+    # ENV.append "LDLAGS", "-mmacosx-version-min=10.8"
     system "./configure", "--prefix=#{prefix}"
     system "make", "install"
   end
