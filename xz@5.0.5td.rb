@@ -9,9 +9,8 @@ class XzAT505td < Formula
   keg_only "Because only tdesktop needs this"
   
   def install
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
+    ENV.append "MACOSX_DEPLOYMENT_TARGET" "10.8"
+    system "./configure",
                           "--prefix=#{prefix}"
     system "make", "check"
     system "make", "install"
