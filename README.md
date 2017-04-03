@@ -4,7 +4,7 @@
  - [x] xz-5.0.5
  - [x] libexif 0.6.20
  - [x] OpenAL Soft
- - [ ] opus-1.1
+ - [x] opus-1.1
  - [x] _pkg-config_: let's just test 0.29.2 provided by brew core, please.
  - [ ] ffmpeg-3.2
  - [ ] Qt 5.6.2 patched
