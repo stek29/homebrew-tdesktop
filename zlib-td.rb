@@ -1,4 +1,4 @@
-class ZlibAT128td < Formula
+class ZlibTd < Formula
   desc "General-purpose lossless data-compression library"
   homepage "http://www.zlib.net/"
   url "http://www.zlib.net/fossils/zlib-1.2.8.tar.gz"

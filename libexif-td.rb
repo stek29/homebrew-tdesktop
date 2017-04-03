@@ -1,4 +1,4 @@
-class LibexifAT0620td < Formula
+class LibexifTd < Formula
   desc "EXIF parsing library"
   homepage "https://libexif.sourceforge.io/"
   url "https://github.com/telegramdesktop/libexif-0.6.20.git",
