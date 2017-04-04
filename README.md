@@ -6,6 +6,7 @@
  - [x] OpenAL Soft
  - [x] opus-1.1
  - [x] _pkg-config_: let's just test 0.29.2 provided by brew core, please.
- - [ ] ffmpeg-3.2
+ - [x] ffmpeg-3.2
+ - [ ] libiconv-1.14
  - [ ] Qt 5.6.2 patched
  - [ ] Google Crashpad
