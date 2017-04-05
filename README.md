@@ -9,4 +9,5 @@
  - [x] ffmpeg-3.2
  - [ ] libiconv-1.14
  - [x] _Qt 5.6.2 patched_: I'm 100% sure I'm doing it wrong, but it works
+ - [x] _gyp_: Needs `echo /usr/local/opt/gyp-td/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/gyp-td.pth`
  - [ ] Google Crashpad
