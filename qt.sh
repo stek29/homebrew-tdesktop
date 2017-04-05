@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-echo "$1" "$PWD"
-touch hang
-while [ -e 'hang' ]; do sleep 1; done
-
 curl 'https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/Telegram/Patches/qtbase_5_6_2.diff' -o qtbase_patch.diff
 
 git clone "https://code.qt.io/qt/qt5.git" "qt5_6_2"
