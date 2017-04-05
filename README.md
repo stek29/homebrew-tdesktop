@@ -8,5 +8,5 @@
  - [x] _pkg-config_: let's just test 0.29.2 provided by brew core, please.
  - [x] ffmpeg-3.2
  - [ ] libiconv-1.14
- - [ ] Qt 5.6.2 patched
+ - [x] _Qt 5.6.2 patched_: I'm 100% sure I'm doing it wrong, but it works
  - [ ] Google Crashpad
