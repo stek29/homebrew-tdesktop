@@ -18,7 +18,7 @@
  - Install [homebrew](https://brew.sh)
  - Tap this repo ( `brew tap stek29/tdesktop` ). Btw, after that repo would be cloned to `$(brew --repo stek29/tdesktop)`, and you could take patches and other stuff from there.
  - Install all the formulas, following order in official instructions:
-   zlib, openssl, libexif, openal-soft*-td*, opus, ffmpeg-td, libiconv, qt5*-td* (this one would be really sloooooow), gyp*-td* (don't forget to add it to site-packages)
+   zlib, openssl, libexif, openal-soft-td, opus, ffmpeg-td, libiconv, qt5-td (this one would be really sloooooow), gyp-td (don't forget to add it to site-packages)
  - Apply gyp.diff patch to tdesktop
  - If you really want to get crashpad, clone depot\_tools to Libraries, and then follow official instructions starting at 'Build crashpad', but instead of `/Users/user/TBuild/Libraries/gyp` add `/usr/local/opt/gyp-td/bin` to PATH. Or you could try not to use crashpad.
  - If you don't want to, apply no\_crashpad.diff
