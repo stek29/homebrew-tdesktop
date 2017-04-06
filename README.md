@@ -20,6 +20,6 @@
  - Install all the formulas, following order in official instructions:
    zlib, openssl, libexif, openal-soft*-td*, opus, ffmpeg-td, libiconv, qt5*-td* (this one would be really sloooooow), gyp*-td* (don't forget to add it to site-packages)
  - Apply gyp.diff patch to tdesktop
- - If you really want to get crashpad, clone depot\_tools to Libraries, and then follow official instructions starting at 'Build crashpad', but instead of `/Users/user/TBuild/Libraries/gyp` add `/usr/local/opt/gyp-td/bin` to PATH. Also mini\_chromium.diff would fail, you can make edits by hand, and `SourceFiles/logs.cpp` won't build, because crashpad's api was changed. You could try checking out `1e6dbcb3008f6eebe02ca33d8c36c8922931dad3` just after fetch, this should solve those problems. Or you could try not to use crashpad.
+ - If you really want to get crashpad, clone depot\_tools to Libraries, and then follow official instructions starting at 'Build crashpad', but instead of `/Users/user/TBuild/Libraries/gyp` add `/usr/local/opt/gyp-td/bin` to PATH. Or you could try not to use crashpad.
  - If you don't want to, apply no\_crashpad.diff
  - I also highly recommend you to disable autoupdate by adding `TDESKTOP_DISABLE_AUTOUPDATE` in Telegram.gyp's defines
