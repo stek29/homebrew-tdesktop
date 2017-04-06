@@ -1,12 +1,12 @@
 ### 10.8 + Only! Tested on 10.12
 
 # Contains:
- - [x] zlib 1.2.8
+ - [x] zlib 1.2.*11*: homebrew/core
  - [x] OpenSSL 1.0.*2*: homebrew/core 
- - [x] xz-5.0.5
- - [x] libexif 0.6.20
+ - [x] xz-5.*2.3*: homebrew/core
+ - [x] libexif 0.6.2*1*: homebrew/core
  - [x] OpenAL Soft
- - [x] opus-1.1
+ - [x] opus-1.1*.4*: homebrew/core
  - [x] pkg-config: homebrew/core 
  - [x] ffmpeg-3.2
  - [x] libiconv-1.1*5*: homebrew/core
@@ -18,7 +18,7 @@
  - Install [homebrew](https://brew.sh)
  - Tap this repo ( `brew tap stek29/tdesktop` ). Btw, after that repo would be cloned to `$(brew --repo stek29/tdesktop)`, and you could take patches and other stuff from there.
  - Install all the formulas, following order in official instructions:
-   zlib-td, openssl, libexif-td, openal-soft-td, opus-td, ffmpeg-td, libiconv, qt5-td (this one would be really sloooooow), gyp-td (don't forget to add it to site-packages)
+   zlib, openssl, libexif, openal-soft*-td*, opus, ffmpeg-td, libiconv, qt5*-td* (this one would be really sloooooow), gyp*-td* (don't forget to add it to site-packages)
  - Apply gyp.diff patch to tdesktop
  - If you really want to get crashpad, clone depot\_tools to Libraries, and then follow official instructions starting at 'Build crashpad', but instead of `/Users/user/TBuild/Libraries/gyp` add `/usr/local/opt/gyp-td/bin` to PATH. Also mini\_chromium.diff would fail, you can make edits by hand, and `SourceFiles/logs.cpp` won't build, because crashpad's api was changed. You could try checking out `1e6dbcb3008f6eebe02ca33d8c36c8922931dad3` just after fetch, this should solve those problems. Or you could try not to use crashpad.
  - If you don't want to, apply no\_crashpad.diff
