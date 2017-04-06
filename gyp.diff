@@ -1,0 +1,159 @@
+diff --git a/Telegram/gyp/Telegram.gyp b/Telegram/gyp/Telegram.gyp
+index a1805ebd945f..89f7659d1117 100644
+--- a/Telegram/gyp/Telegram.gyp
++++ b/Telegram/gyp/Telegram.gyp
+@@ -85,16 +85,32 @@
+       'AL_LIBTYPE_STATIC',
+       '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
+     ],
+-
++    'libraries': [
++      # ls -d /usr/local/opt/*-td -w1|sed "s/^\(.*\)\@$/'-L\1\/lib',/"
++      '-L/usr/local/opt/ffmpeg-td/lib',
++      '-L/usr/local/opt/gyp-td/lib',
++      '-L/usr/local/opt/libexif-td/lib',
++      '-L/usr/local/opt/openal-soft-td/lib',
++      '-L/usr/local/opt/opus-td/lib',
++      '-L/usr/local/opt/qt5-td/lib',
++      '-L/usr/local/opt/xz-td/lib',
++      '-L/usr/local/opt/zlib-td/lib',
++      '-L/usr/local/opt/libiconv/lib',
++    ],
+     'include_dirs': [
+       '<(src_loc)',
+       '<(SHARED_INTERMEDIATE_DIR)',
+       '<(libs_loc)/breakpad/src',
+-      '<(libs_loc)/lzma/C',
+-      '<(libs_loc)/libexif-0.6.20',
+-      '<(libs_loc)/zlib-1.2.8',
+-      '<(libs_loc)/ffmpeg',
+-      '<(libs_loc)/openal-soft/include',
++      '/usr/local/opt/openssl/include',
++      '/usr/local/opt/ffmpeg-td/include',
++      '/usr/local/opt/gyp-td/include',
++      '/usr/local/opt/libexif-td/include',
++      '/usr/local/opt/openal-soft-td/include',
++      '/usr/local/opt/opus-td/include',
++      '/usr/local/opt/qt5-td/include',
++      '/usr/local/opt/xz-td/include',
++      '/usr/local/opt/zlib-td/include',
++      '/usr/local/opt/libiconv/include',
+       '<(minizip_loc)',
+       '<(sp_media_key_tap_loc)',
+       '<(submodules_loc)/GSL/include',
+diff --git a/Telegram/gyp/qt.gypi b/Telegram/gyp/qt.gypi
+index c12e450b0b24..39d9e1f133df 100644
+--- a/Telegram/gyp/qt.gypi
++++ b/Telegram/gyp/qt.gypi
+@@ -45,7 +45,7 @@
+             [ 'build_macold', {
+               'linux_path_qt%': '/usr/local/macold/Qt-<(qt_version)',
+             }, {
+-              'linux_path_qt%': '/usr/local/tdesktop/Qt-<(qt_version)',
++              'linux_path_qt%': '/usr/local/opt/qt5-td',
+             }]
+           ]
+         },
+@@ -163,7 +163,8 @@
+           'xcode_settings': {
+             'OTHER_LDFLAGS': [
+               '<@(qt_libs_debug)',
+-              '/usr/local/lib/libz.a',
++              '-L/usr/local/opt/zlib-td/lib',
++              '-lz'
+             ],
+           },
+         }],
+@@ -184,7 +185,8 @@
+           'xcode_settings': {
+             'OTHER_LDFLAGS': [
+               '<@(qt_libs_release)',
+-              '/usr/local/lib/libz.a',
++              '-L/usr/local/opt/zlib-td/lib',
++              '-lz'
+             ],
+           },
+         }],
+diff --git a/Telegram/gyp/refresh.sh b/Telegram/gyp/refresh.sh
+index 87f16da88bbd..77cb62fe6b0c 100755
+--- a/Telegram/gyp/refresh.sh
++++ b/Telegram/gyp/refresh.sh
+@@ -20,7 +20,7 @@ else
+   #gyp --depth=. --generator-output=../.. -Goutput_dir=out Telegram.gyp --format=xcode-ninja
+   #gyp --depth=. --generator-output=../.. -Goutput_dir=out Telegram.gyp --format=xcode
+   # use patched gyp with Xcode project generator
+-  ../../../Libraries/gyp/gyp --depth=. --generator-output=../.. -Goutput_dir=out Telegram.gyp -Gxcode_upgrade_check_project_version=830 --format=xcode
++  /usr/local/opt/gyp-td/bin/gyp --depth=. --generator-output=../.. -Goutput_dir=out Telegram.gyp -Gxcode_upgrade_check_project_version=830 --format=xcode
+ fi
+ 
+ cd ../..
+diff --git a/Telegram/gyp/telegram_mac.gypi b/Telegram/gyp/telegram_mac.gypi
+index 89037fd70bca..0eae831adc94 100644
+--- a/Telegram/gyp/telegram_mac.gypi
++++ b/Telegram/gyp/telegram_mac.gypi
+@@ -130,14 +130,14 @@
+   }, {
+     'xcode_settings': {
+       'OTHER_LDFLAGS': [
+-        '/usr/local/lib/libz.a',
+-        '/usr/local/lib/libopenal.a',
+-        '/usr/local/lib/libiconv.a',
+-        '/usr/local/lib/libavcodec.a',
+-        '/usr/local/lib/libavformat.a',
+-        '/usr/local/lib/libavutil.a',
+-        '/usr/local/lib/libswscale.a',
+-        '/usr/local/lib/libswresample.a',
++        '/usr/local/opt/zlib-td/lib/libz.a',
++        '/usr/local/opt/openal-soft-td/lib/libopenal.a',
++        '/usr/local/opt/libiconv/lib/libiconv.a',
++        '/usr/local/opt/ffmpeg-td/lib/libavcodec.a',
++        '/usr/local/opt/ffmpeg-td/lib/libavformat.a',
++        '/usr/local/opt/ffmpeg-td/lib/libavutil.a',
++        '/usr/local/opt/ffmpeg-td/lib/libswscale.a',
++        '/usr/local/opt/ffmpeg-td/lib/libswresample.a',
+       ],
+     },
+     'include_dirs': [
+diff --git a/Telegram/gyp/utils.gyp b/Telegram/gyp/utils.gyp
+index 209c73704341..c9b329518a5d 100644
+--- a/Telegram/gyp/utils.gyp
++++ b/Telegram/gyp/utils.gyp
+@@ -93,10 +93,10 @@
+       }],
+       [ 'build_mac', {
+         'include_dirs': [
+-          '<(libs_loc)/openssl-xcode/include'
++          '/usr/local/opt/openssl/include'
+         ],
+         'library_dirs': [
+-          '<(libs_loc)/openssl-xcode',
++          '/usr/local/opt/openssl/lib',
+         ],
+         'xcode_settings': {
+           'OTHER_LDFLAGS': [
+@@ -131,10 +131,11 @@
+           }, {
+             'include_dirs': [
+               '/usr/local/include',
+-              '<(libs_loc)/openssl-xcode/include'
++              '/usr/local/opt/openssl/include'
+             ],
+             'library_dirs': [
+               '/usr/local/lib',
++              '/usr/local/opt/openssl/lib'
+             ],
+           }]
+         ],
+@@ -153,10 +154,11 @@
+           }, {
+             'include_dirs': [
+               '/usr/local/include',
+-              '<(libs_loc)/openssl-xcode/include'
++              '/usr/local/opt/openssl/include'
+             ],
+             'library_dirs': [
+               '/usr/local/lib',
++              '/usr/local/opt/openssl/lib'
+             ],
+           }]
+         ],
