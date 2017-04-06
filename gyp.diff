@@ -88,10 +88,10 @@ index 87f16da88bbd..77cb62fe6b0c 100755
  
  cd ../..
 diff --git a/Telegram/gyp/telegram_mac.gypi b/Telegram/gyp/telegram_mac.gypi
-index 89037fd70bca..0eae831adc94 100644
+index 89037fd70bca..738fc678153d 100644
 --- a/Telegram/gyp/telegram_mac.gypi
 +++ b/Telegram/gyp/telegram_mac.gypi
-@@ -130,14 +130,14 @@
+@@ -130,23 +130,23 @@
    }, {
      'xcode_settings': {
        'OTHER_LDFLAGS': [
@@ -114,6 +114,17 @@ index 89037fd70bca..0eae831adc94 100644
        ],
      },
      'include_dirs': [
+       '<(libs_loc)/crashpad/crashpad',
+       '<(libs_loc)/crashpad/crashpad/third_party/mini_chromium/mini_chromium',
+-      '<(libs_loc)/openssl-xcode/include'
++      '/usr/local/opt/openssl/include'
+     ],
+     'library_dirs': [
+-      '<(libs_loc)/openssl-xcode',
++      '/usr/local/opt/openssl/lib',
+     ],
+     'configurations': {
+       'Debug': {
 diff --git a/Telegram/gyp/utils.gyp b/Telegram/gyp/utils.gyp
 index 209c73704341..c9b329518a5d 100644
 --- a/Telegram/gyp/utils.gyp
