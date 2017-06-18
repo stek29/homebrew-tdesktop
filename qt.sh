@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -exo pipefail
+
 curl 'https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/Telegram/Patches/qtbase_5_6_2.diff' -o qtbase_patch.diff
 
 git clone "https://code.qt.io/qt/qt5.git" "qt5_6_2"
