@@ -1,7 +1,7 @@
 class GypTd < Formula
   url "https://chromium.googlesource.com/external/gyp", 
     :using => :git 
-  version "1"
+  version "2"
   
   keg_only "Only TDestkop needs this"
 
@@ -18,5 +18,14 @@ class GypTd < Formula
 
     bin.install "gyp"
     bin.install "gyp_main.py"
+  end
+
+  def caveats
+    <<-EOS.undent
+      Execute following to complete installation:
+
+      echo #{opt_prefix}/lib/python2.7/site-packages \
+      >> /usr/local/lib/python2.7/site-packages/gyp-td.pth
+    EOS
   end
 end
